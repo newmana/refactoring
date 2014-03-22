@@ -1,33 +1,31 @@
 class AddAddress < ActiveRecord::Migration
   def change
-    create_table :address1 do |t|
+    create_table :address1s do |t|
       t.text :street
-      t.text :city
       t.text :postcode, limit: 2
-      t.text :state_name
+      t.text :city_name
     end
 
-    create_table :address2 do |t|
-      t.belongs_to :state
-      t.text :street
-      t.text :city
-    end
-
-    create_table :state2 do |t|
-      t.text :postcode, limit: 2
-      t.text :state_name
-    end
-
-    create_table :address3 do |t|
+    create_table :address2s do |t|
+      t.belongs_to :city2s
       t.text :street
       t.text :city
     end
 
-    create_table :state3 do |t|
+    create_table :city2s do |t|
+      t.text :name
       t.text :postcode, limit: 2
-      t.text :state_name
     end
 
-    create_join_table :address3, :state3
+    create_table :address3s do |t|
+      t.text :street
+    end
+
+    create_table :city3s do |t|
+      t.text :postcode, limit: 2
+      t.text :name
+    end
+
+    create_join_table :address3s, :state3s
   end
 end

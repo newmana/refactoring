@@ -13,37 +13,35 @@
 
 ActiveRecord::Schema.define(version: 20140318120340) do
 
-  create_table "address1", force: true do |t|
+  create_table "address1s", force: true do |t|
     t.text "street"
-    t.text "city"
-    t.text "postcode",   limit: 2
-    t.text "state_name"
+    t.text "postcode",  limit: 2
+    t.text "city_name"
   end
 
-  create_table "address2", force: true do |t|
-    t.integer "state_id"
+  create_table "address2s", force: true do |t|
+    t.integer "city2s_id"
     t.text    "street"
     t.text    "city"
   end
 
-  create_table "address3", force: true do |t|
+  create_table "address3s", force: true do |t|
     t.text "street"
-    t.text "city"
   end
 
-  create_table "address3_state3", id: false, force: true do |t|
+  create_table "address3s_state3s", id: false, force: true do |t|
     t.integer "address3_id", null: false
     t.integer "state3_id",   null: false
   end
 
-  create_table "state2", force: true do |t|
-    t.text "postcode",   limit: 2
-    t.text "state_name"
+  create_table "city2s", force: true do |t|
+    t.text "name"
+    t.text "postcode", limit: 2
   end
 
-  create_table "state3", force: true do |t|
-    t.text "postcode",   limit: 2
-    t.text "state_name"
+  create_table "city3s", force: true do |t|
+    t.text "postcode", limit: 2
+    t.text "name"
   end
 
 end
