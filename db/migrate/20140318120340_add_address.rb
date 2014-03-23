@@ -7,13 +7,12 @@ class AddAddress < ActiveRecord::Migration
     end
 
     create_table :address2s do |t|
-      t.belongs_to :city2s
+      t.belongs_to :city2
       t.text :street
-      t.text :city
     end
 
     create_table :city2s do |t|
-      t.text :name
+      t.text :city_name
       t.text :postcode, limit: 2
     end
 
@@ -23,7 +22,7 @@ class AddAddress < ActiveRecord::Migration
 
     create_table :city3s do |t|
       t.text :postcode, limit: 2
-      t.text :name
+      t.text :city_name
     end
 
     create_join_table :address3s, :state3s

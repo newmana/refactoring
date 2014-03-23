@@ -20,9 +20,8 @@ ActiveRecord::Schema.define(version: 20140318120340) do
   end
 
   create_table "address2s", force: true do |t|
-    t.integer "city2s_id"
+    t.integer "city2_id"
     t.text    "street"
-    t.text    "city"
   end
 
   create_table "address3s", force: true do |t|
@@ -35,13 +34,13 @@ ActiveRecord::Schema.define(version: 20140318120340) do
   end
 
   create_table "city2s", force: true do |t|
-    t.text "name"
-    t.text "postcode", limit: 2
+    t.text "city_name"
+    t.text "postcode",  limit: 2
   end
 
   create_table "city3s", force: true do |t|
-    t.text "postcode", limit: 2
-    t.text "name"
+    t.text "postcode",  limit: 2
+    t.text "city_name"
   end
 
 end
