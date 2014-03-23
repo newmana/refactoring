@@ -24,23 +24,9 @@ ActiveRecord::Schema.define(version: 20140318120340) do
     t.text    "street"
   end
 
-  create_table "address3s", force: true do |t|
-    t.text "street"
-  end
-
-  create_table "address3s_state3s", id: false, force: true do |t|
-    t.integer "address3_id", null: false
-    t.integer "state3_id",   null: false
-  end
-
   create_table "city2s", force: true do |t|
     t.text "city_name"
     t.text "postcode",  limit: 2
-  end
-
-  create_table "city3s", force: true do |t|
-    t.text "postcode",  limit: 2
-    t.text "city_name"
   end
 
 end
