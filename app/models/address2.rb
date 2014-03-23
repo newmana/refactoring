@@ -6,6 +6,6 @@ class Address2 < ActiveRecord::Base
 
   def city_name=(name)
     city = City2.where(city_name: name).first
-    self.city2_id = city.id if city
+    self.city2 = city if city
   end
 end
