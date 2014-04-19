@@ -10,6 +10,7 @@ describe Address1 do
       address.postcode = "1234"
       address.save(reload: true)
       address.postcode.must_equal "1234"
+      address.valid?.must_equal true
     end
   end
 
@@ -29,6 +30,7 @@ describe Address1 do
       address.postcode = "1234"
       address.postcode.must_equal "1234"
       address.reload.postcode.must_equal "4505"
+      address.valid?.must_equal true
     end
   end
 
