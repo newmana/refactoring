@@ -1,42 +1,39 @@
 require 'test_helper'
 
-class Address1Test < ActiveSupport::TestCase
-  test "validations" do
-    address = Address1.new(street: "12 Smith Street", city_name: "Burpengary")
-    assert address.postcode.eql?("4505")
-    assert address.valid?
+describe Address1 do
+  describe "with new" do
+    let(:address) { Address1.new(street: "12 Smith Street", city_name: "Burpengary") }
+    it { address.postcode.must_equal "4505" }
+    it { address.valid?.must_equal true }
+
+    it "can access postcode" do
+      address.postcode = "1234"
+      address.save(reload: true)
+      address.postcode.must_equal "1234"
+    end
   end
 
-  test "set valid" do
-    address = Address1.create(street: "12 Smith Street", city_name: "Burpengary")
-    assert address.postcode.eql?("4505")
-    address.city_name = "Enoggera"
-    assert address.postcode.eql?("4051")
-    address.save
-    address.reload
-    assert address.postcode.eql?("4051")
-    assert address.valid?
+  describe "with create" do
+    let(:address) { Address1.create(street: "12 Smith Street", city_name: "Burpengary") }
+    it { address.postcode.must_equal "4505" }
+
+    it "set valid" do
+      address.city_name = "Enoggera"
+      address.postcode.must_equal "4051"
+      address.save(reload: true)
+      address.postcode.must_equal "4051"
+      address.valid?.must_equal true
+    end
+
+    it "can't sorta access postcode with create" do
+      address.postcode = "1234"
+      address.postcode.must_equal "1234"
+      address.reload.postcode.must_equal "4505"
+    end
   end
 
-  test "can't sorta access postcode with create" do
-    address = Address1.create(street: "12 Smith Street", city_name: "Burpengary")
-    assert address.postcode.eql?("4505")
-    address.postcode = "1234"
-    assert address.postcode.eql?("1234")
-    assert address.reload.postcode.eql?("4505")
-  end
-
-  test "can access postcode with new" do
-    address = Address1.new(street: "12 Smith Street", city_name: "Burpengary")
-    assert address.postcode.eql?("4505")
-    address.postcode = "1234"
-    assert address.postcode.eql?("1234")
-    address.save
-    assert address.reload.postcode.eql?("1234")
-  end
-
-  test "invalid" do
-    address = Address1.new(street: "12 Smith Street", city_name: "Beverly Hills")
-    assert address.invalid?
+  describe "with new" do
+    let(:address) { Address1.new(street: "12 Smith Street", city_name: "Beverly Hills") }
+    it { address.invalid?.must_equal true }
   end
 end
