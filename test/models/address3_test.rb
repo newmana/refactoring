@@ -8,7 +8,7 @@ class Address3Test < ActiveSupport::TestCase
 
   test "set valid" do
     address = Address3.create(street: "12 Smith Street", city3: city3(:burp))
-    address.postcode.eql?("4505")
+    assert address.postcode.eql?("4505")
     address.city_name = "Enoggera"
     assert address.postcode.eql?("4051")
     assert address.valid?
@@ -16,8 +16,8 @@ class Address3Test < ActiveSupport::TestCase
 
   test "can't access postcode" do
     assert_raise NoMethodError do
-      address = Address3.new(street: "12 Smith Street", city_name: "Burpengary")
-      address.postcode = "1234"
+      address = Address3.create(street: "12 Smith Street", city_name: "Burpengary")
+      assert address.postcode = "1234"
     end
   end
 
@@ -32,7 +32,7 @@ class Address3Test < ActiveSupport::TestCase
 
   test "validations with fixture" do
     address = Address3.new(street: "12 Smith Street", city3: city3(:burp))
-    address.postcode.eql?("4505")
+    assert address.postcode.eql?("4505")
     assert address.valid?
   end
 
