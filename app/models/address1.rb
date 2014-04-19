@@ -2,7 +2,7 @@ class Address1 < ActiveRecord::Base
   validates :street, :city_name, :postcode, presence: true
   validates :postcode, length: {is: 4}
   validates :postcode, numericality: {only_integer: true}
-  attr_readonly :postcode
+  attr_accessible :street, :city_name
 
   CITY_POSTCODE = {"Burpengary" => "4505", "Enoggera" => "4051"}
 

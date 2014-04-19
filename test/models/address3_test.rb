@@ -11,6 +11,9 @@ class Address3Test < ActiveSupport::TestCase
     assert address.postcode.eql?("4505")
     address.city_name = "Enoggera"
     assert address.postcode.eql?("4051")
+    address.save
+    address.reload
+    assert address.postcode.eql?("4051")
     assert address.valid?
   end
 

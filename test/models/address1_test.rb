@@ -8,9 +8,12 @@ class Address1Test < ActiveSupport::TestCase
   end
 
   test "set valid" do
-    address = Address1.new(street: "12 Smith Street", city_name: "Burpengary")
+    address = Address1.create(street: "12 Smith Street", city_name: "Burpengary")
     assert address.postcode.eql?("4505")
     address.city_name = "Enoggera"
+    assert address.postcode.eql?("4051")
+    address.save
+    address.reload
     assert address.postcode.eql?("4051")
     assert address.valid?
   end
