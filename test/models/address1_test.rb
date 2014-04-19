@@ -15,12 +15,21 @@ class Address1Test < ActiveSupport::TestCase
     assert address.valid?
   end
 
-  test "can't sorta access postcode" do
+  test "can't sorta access postcode with create" do
     address = Address1.create(street: "12 Smith Street", city_name: "Burpengary")
+    assert address.postcode.eql?("4505")
+    address.postcode = "1234"
+    assert address.postcode.eql?("1234")
+    assert address.reload.postcode.eql?("4505")
+  end
+
+  test "can access postcode with new" do
+    address = Address1.new(street: "12 Smith Street", city_name: "Burpengary")
+    assert address.postcode.eql?("4505")
     address.postcode = "1234"
     assert address.postcode.eql?("1234")
     address.save
-    assert address.reload.postcode.eql?("4505")
+    assert address.reload.postcode.eql?("1234")
   end
 
   test "invalid" do
