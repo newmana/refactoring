@@ -33,12 +33,26 @@ ActiveRecord::Schema.define(version: 20140318120340) do
     t.integer "city3_id"
   end
 
+  create_table "address4s", force: true do |t|
+    t.text "street"
+  end
+
+  create_table "address4s_city4s", force: true do |t|
+    t.integer "address4_id"
+    t.integer "city4_id"
+  end
+
   create_table "city2s", force: true do |t|
     t.text "city_name"
     t.text "postcode",  limit: 2
   end
 
   create_table "city3s", force: true do |t|
+    t.text "postcode",  limit: 2
+    t.text "city_name"
+  end
+
+  create_table "city4s", force: true do |t|
     t.text "postcode",  limit: 2
     t.text "city_name"
   end

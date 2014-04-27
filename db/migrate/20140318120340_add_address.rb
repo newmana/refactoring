@@ -30,5 +30,20 @@ class AddAddress < ActiveRecord::Migration
       t.belongs_to :address3
       t.belongs_to :city3
     end
+
+    create_table :address4s do |t|
+      t.text :street
+    end
+
+    create_table :city4s do |t|
+      t.text :postcode, limit: 2
+      t.text :city_name
+    end
+
+    #create_join_table :address3s, :city3s
+    create_table :address4s_city4s do |t|
+      t.belongs_to :address4
+      t.belongs_to :city4
+    end
   end
 end
